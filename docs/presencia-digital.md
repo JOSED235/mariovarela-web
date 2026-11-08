@@ -11,7 +11,7 @@
 | Canal | Qué hay | Estado |
 |---|---|---|
 | **Instagram** [@mariovareladisacol](https://www.instagram.com/mariovareladisacol/) | 8.532 seguidores y 135 seguidos. Bio: «Fabricantes de cinturones y accesorios · 11 años en el mercado textil colombiano · Ventas mayoristas y al detal». Enlace a wa.me/573105255913. Historia destacada «Ubicación» | Activo: reels del 30-oct, 3-nov y 5-nov-2026 |
-| **WhatsApp** 310 525 5913 | Canal de venta. Los reels piden «escríbenos para el catálogo» | Activo. Por confirmar si es WhatsApp Business y si tiene catálogo cargado |
+| **WhatsApp Business** 310 525 5913 | Canal de venta, con el nombre «Disacol Mario Varela» y catálogo cargado: https://wa.me/c/573105255913 | Activo. El catálogo solo se ve desde WhatsApp; hay que pasar sus referencias y fotos a la página |
 | **Facebook** [Mario Varela](https://www.facebook.com/p/Mario-Varela-100091272746777/) | Página existe | No se pudo leer el contenido sin iniciar sesión |
 | **TikTok** | No se pudo comprobar si existe @mariovareladisacol | Por confirmar |
 | **Página web** | **No tiene.** mariovarela.com es de otra persona («Studio Mario Varela»). disacol.com redirige a otro sitio sin verificar | — |
