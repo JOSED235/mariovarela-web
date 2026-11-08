@@ -1,2 +1,5 @@
 node_modules/
 dist/
+.astro/
+# material crudo del cliente (capturas del catálogo de WhatsApp)
+imagenes/

@@ -1,0 +1,28 @@
+<aside id="pedido" class="pedido" aria-labelledby="pedido-titulo" data-pedido hidden>
+  <div class="pedido__cabeza">
+    <h2 id="pedido-titulo">Su pedido</h2>
+    <button type="button" class="pedido__cerrar" data-cerrar-pedido aria-label="Cerrar pedido">×</button>
+  </div>
+  <p class="pedido__minimo" data-minimo></p>
+  <ul class="pedido__lista" data-lista></ul>
+  <div class="pedido__datos">
+    <label class="campo">Su nombre <input data-nombre autocomplete="name" /></label>
+    <label class="campo">Ciudad <input data-ciudad autocomplete="address-level2" /></label>
+    <button type="button" class="boton boton--ancho" data-enviar>Enviar por WhatsApp</button>
+  </div>
+</aside>
+<div class="pedido-fondo" data-cerrar-pedido hidden></div>
+
+<style>
+  .pedido { position: fixed; z-index: 50; inset: 0 0 0 auto; width: min(440px, 100%); display: flex; flex-direction: column; gap: calc(var(--u) * 2); padding: calc(var(--u) * 4); background: var(--arena); overflow-y: auto; animation: deslizar 0.5s var(--curva); }
+  @keyframes deslizar { from { transform: translateX(100%); } }
+  .pedido[hidden], .pedido-fondo[hidden] { display: none; }
+  .pedido-fondo { position: fixed; inset: 0; z-index: 40; background: color-mix(in oklch, var(--negro) 55%, transparent); }
+  .pedido__cabeza { display: flex; justify-content: space-between; align-items: center; }
+  .pedido__cabeza h2 { margin: 0; font-size: var(--t-2); }
+  .pedido__cerrar { width: 44px; height: 44px; border: 1px solid var(--negro); border-radius: 50%; background: none; font-size: 1.4rem; cursor: pointer; }
+  .pedido__minimo { margin: 0; padding: calc(var(--u) * 1.5) calc(var(--u) * 2); background: var(--negro); color: var(--travertino); font-size: 0.9rem; }
+  .pedido__minimo:empty { display: none; }
+  .pedido__lista { list-style: none; margin: 0; padding: 0; }
+  .pedido__datos { display: grid; gap: calc(var(--u) * 2); margin-top: auto; }
+</style>

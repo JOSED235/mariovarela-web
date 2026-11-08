@@ -1,0 +1,46 @@
+---
+import Logo from './Logo.astro';
+const enlaces = [
+  ['#catalogo', 'Catálogo'],
+  ['#mayor', 'Por mayor'],
+  ['#marca', 'Su marca'],
+  ['#historia', 'Historia'],
+  ['#visitenos', 'Visítenos'],
+];
+---
+<header class="encabezado" data-encabezado>
+  <a href="#inicio" class="encabezado__logo"><Logo /></a>
+  <nav id="menu" class="menu" aria-label="Principal" data-menu>
+    <ul>{enlaces.map(([href, texto]) => <li><a href={href}>{texto}</a></li>)}</ul>
+  </nav>
+  <button type="button" class="pedido-boton" data-abrir-pedido aria-controls="pedido">
+    Pedido <span class="pedido-boton__n" data-contador>0</span>
+  </button>
+  <button type="button" class="menu-boton" aria-controls="menu" aria-expanded="false" data-menu-boton>
+    <span class="oculto">Menú</span><span class="menu-boton__raya"></span><span class="menu-boton__raya"></span>
+  </button>
+</header>
+
+<style>
+  .encabezado { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: calc(var(--u) * 4); padding: calc(var(--u) * 1.5) var(--margen); background: var(--travertino); border-bottom: 1px solid color-mix(in oklch, var(--negro) 12%, transparent); }
+  .encabezado__logo { text-decoration: none; }
+  .menu { margin-left: auto; }
+  .menu ul { display: flex; gap: calc(var(--u) * 4); list-style: none; margin: 0; padding: 0; }
+  .menu a { position: relative; text-decoration: none; font: 500 0.82rem/1 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; padding-block: 10px; }
+  .menu a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.4s var(--curva); }
+  .menu a:hover::after { transform: scaleX(1); transform-origin: left; }
+  .pedido-boton { display: inline-flex; align-items: center; gap: var(--u); min-height: 44px; padding: 0 calc(var(--u) * 2); border: 1px solid var(--negro); background: transparent; font: 600 0.78rem/1 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; }
+  .pedido-boton__n { display: grid; place-items: center; min-width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--rojo); color: var(--arena); font-size: 0.75rem; letter-spacing: 0; }
+  .menu-boton { display: none; width: 44px; height: 44px; border: 0; background: none; cursor: pointer; flex-direction: column; justify-content: center; gap: 7px; padding: 10px; }
+  .menu-boton__raya { display: block; height: 1.5px; background: var(--negro); transition: transform 0.35s var(--curva); }
+  .menu-boton[aria-expanded='true'] .menu-boton__raya:first-of-type { transform: translateY(4.25px) rotate(45deg); }
+  .menu-boton[aria-expanded='true'] .menu-boton__raya:last-of-type { transform: translateY(-4.25px) rotate(-45deg); }
+  @media (max-width: 900px) {
+    .menu-boton { display: flex; }
+    .pedido-boton { margin-left: auto; }
+    .menu { position: fixed; inset: 64px 0 auto 0; margin: 0; padding: calc(var(--u) * 3) var(--margen) calc(var(--u) * 5); background: var(--travertino); border-bottom: 1px solid var(--negro); transform: translateY(-120%); transition: transform 0.45s var(--curva); }
+    .menu[data-abierto] { transform: none; }
+    .menu ul { flex-direction: column; gap: 0; }
+    .menu a { display: block; padding-block: 14px; font: 450 1.6rem/1.1 var(--serif); letter-spacing: 0; text-transform: none; }
+  }
+</style>

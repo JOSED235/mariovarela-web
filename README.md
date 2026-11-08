@@ -2,18 +2,35 @@
 
 Página web de **Mario Varela** (Disacol Mario Varela S.A.S., NIT 902.012.563-9), fábrica de correas, bolsos y accesorios de cuero en Cali (Carrera 9A # 18-33, barrio Sucre). Vende por mayor y al detal y fabrica para otras marcas.
 
-**Estado (7-nov-2026):** el cliente dijo que sí. Hay un **borrador** estático (`index.html`) para enviarle el martes 10-nov con la cotización. Fotos, precios y referencias son de ejemplo, y los pedidos de prueba llegan al WhatsApp de José David (`js/datos.js`).
+**Estado (7-nov-2026):** el cliente dijo que sí. El **borrador** en Astro se le envía el martes 10-nov con la cotización: https://josed235.github.io/mariovarela-web/ (`noindex`). Las fotos son capturas de su catálogo de WhatsApp, los precios están por confirmar y los pedidos de prueba llegan al WhatsApp de José David (`negocio.whatsapp` en `src/data/negocio.ts`).
 
-## Ver el borrador
+## Uso
 
 ```bash
-npx http-server -s .   # los módulos de JS no cargan con file://
-node --test js/        # pruebas del pedido (agregar, total, mínimo por mayor, mensaje)
+npm install
+npm run dev       # http://localhost:4321
+npm test          # pruebas del pedido (agregar, cantidades, total, mínimo por mayor, mensaje)
+npm run build     # genera dist/
 ```
 
-- `js/datos.js`: referencias de ejemplo, colores, mínimo por mayor y número de WhatsApp.
-- `js/pedido.js`: lógica pura del pedido (con pruebas en `pedido.test.js`).
-- `js/main.js`: filtros, tarjetas, panel del pedido y formulario de marca propia.
+Cada push a `main` compila y publica en GitHub Pages (`.github/workflows/pages.yml`, con `BASE=/mariovarela-web/`).
+
+## Estructura
+
+```
+src/
+  data/negocio.ts        datos del negocio y catálogo (única fuente)
+  lib/pedido.js          lógica pura del pedido, con pruebas
+  components/            Encabezado, Logo (recreación tipográfica), Catalogo (rejilla + vista rápida), Pedido
+  pages/index.astro      la página y sus estilos
+  scripts/catalogo.js    filtros, vista rápida, pedido, formulario de marca y menú móvil
+  scripts/animaciones.js GSAP + ScrollTrigger + Lenis (nada corre con reduced motion)
+  styles/global.css      tokens y estilos compartidos
+  assets/productos/      fotos del catálogo (optimizadas a WebP en el build)
+imagenes/                material crudo del cliente (ignorado por git)
+```
+
+- Para agregar un producto o un color: `src/data/negocio.ts` y su foto en `src/assets/productos/`.
 - Sistema visual en [DESIGN.md](DESIGN.md).
 
 ## Documentación
@@ -29,6 +46,6 @@ node --test js/        # pruebas del pedido (agregar, total, mínimo por mayor, 
 
 La cotización y el plan comercial están en `G:\Mi unidad\02_Personal\Independiente\Propuestas y cotizaciones\Mario Varela\`.
 
-## Stack previsto
+## Stack
 
-Sitio estático con Vite (igual que `calipieles-landing`), catálogo alimentado por un archivo de datos y publicado en Cloudflare Pages o GitHub Pages.
+Astro 7 (sitio estático), GSAP + ScrollTrigger + Lenis para las animaciones, Bodoni Moda y Hanken Grotesk autoalojadas con Fontsource. El catálogo es un archivo de datos que después puede leer también el chatbot.

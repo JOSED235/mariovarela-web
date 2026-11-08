@@ -1,0 +1,28 @@
+---
+// Recreación tipográfica del logo (M con serifas + firma) mientras llega el vector oficial.
+interface Props { tamano?: 'chico' | 'grande'; animar?: boolean }
+const { tamano = 'chico', animar = false } = Astro.props;
+---
+<span class:list={['logo', `logo--${tamano}`, { 'logo--animar': animar }]} aria-label="Mario Varela Marroquinería" role="img">
+  <span class="logo__m" aria-hidden="true">M<svg class="logo__firma" viewBox="0 0 120 60" aria-hidden="true"><path d="M4 56 C10 40 16 18 22 8 C26 2 30 4 26 20 C24 30 20 40 18 46 C24 30 32 18 40 16 C48 14 50 26 58 26 C70 26 92 14 116 4" pathLength="1" /></svg></span>
+  <span class="logo__nombre" aria-hidden="true">Mario Varela</span>
+  {tamano === 'grande' && <span class="logo__sub" aria-hidden="true">Marroquinería</span>}
+</span>
+
+<style>
+  .logo { display: inline-grid; justify-items: center; color: inherit; line-height: 1; }
+  .logo__m { position: relative; font-family: var(--serif); font-weight: 500; font-variation-settings: 'opsz' 48; }
+  .logo__firma { position: absolute; left: 82%; bottom: 62%; width: 1.25em; height: auto; overflow: visible; }
+  .logo__firma path { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+  .logo__nombre { font: 500 0.62em/1 var(--sans); text-transform: uppercase; letter-spacing: 0.42em; margin-right: -0.42em; white-space: nowrap; }
+  @media (max-width: 420px) { .logo--chico .logo__nombre { letter-spacing: 0.24em; margin-right: -0.24em; } .logo--chico { gap: 0.45rem; } }
+  .logo__sub { font: italic 400 0.6em/1 var(--serif); margin-top: 0.7em; }
+  .logo--chico { font-size: 1.05rem; grid-template-columns: auto auto; gap: 0.7rem; align-items: center; }
+  .logo--chico .logo__m { font-size: 2.1rem; }
+  .logo--chico .logo__firma { width: 1.1em; }
+  .logo--grande { font-size: clamp(1rem, 0.6rem + 1.6vw, 1.6rem); gap: 1.1em; }
+  .logo--grande .logo__m { font-size: 6.4em; }
+  .logo--animar .logo__firma path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: firmar 1.6s 0.5s var(--curva) forwards; }
+  @keyframes firmar { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .logo--animar .logo__firma path { animation: none; stroke-dashoffset: 0; } }
+</style>

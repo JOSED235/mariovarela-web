@@ -1,0 +1,327 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Encabezado from '../components/Encabezado.astro';
+import Logo from '../components/Logo.astro';
+import Catalogo from '../components/Catalogo.astro';
+import Pedido from '../components/Pedido.astro';
+import { negocio } from '../data/negocio';
+import portada from '../assets/productos/portada-canguro.png';
+import regSaiCebra from '../assets/productos/reg-sai-cebra.png';
+
+const wa = (t: string) => `https://wa.me/${negocio.whatsapp}?text=${encodeURIComponent(t)}`;
+const cinta = ['Atrevido', 'Elegante', 'Único', 'Hecho en Cali', 'Por mayor', 'Con su marca'];
+---
+<Base titulo="Mario Varela · Marroquinería en Cali" descripcion="Bolsos, canguros y correas en cuero hechos en nuestro taller del centro de Cali. Por mayor desde 10 unidades surtidas, al detal y con su marca.">
+  <p class="aviso-borrador">Borrador para revisión · Precios y textos por confirmar · Los pedidos de prueba llegan a José David</p>
+  <Encabezado />
+
+  <main id="inicio">
+    <!-- Portada -->
+    <section class="portada">
+      <div class="portada__texto">
+        <span class="rotulo" data-portada-sube>Marroquinería · Barrio Sucre, Cali</span>
+        <h1 class="portada__titulo">
+          {negocio.lema.map((p, i) => <span class="portada__linea"><span data-palabra class:list={{ 'portada__acento': i === 1 }}>{p}</span></span>)}
+        </h1>
+        <p class="portada__bajada" data-portada-sube>Bolsos, canguros y correas en cuero, hechos en nuestro taller del centro de Cali. Para su tienda, para su marca o para usted.</p>
+        <div class="portada__acciones" data-portada-sube>
+          <a class="boton" href="#catalogo">Ver catálogo</a>
+          <a class="boton boton--linea" href="#mayor">Comprar por mayor</a>
+        </div>
+      </div>
+      <figure class="portada__figura">
+        <div class="portada__foto" data-portada-foto>
+          <Image src={portada} alt="Modelo con el canguro de cuero en estampado serpiente" width={400} format="webp" loading="eager" fetchpriority="high" />
+        </div>
+        <span class="portada__aro" data-portada-aro aria-hidden="true"></span>
+        <figcaption data-portada-sube>Canguro · serpiente</figcaption>
+      </figure>
+      <dl class="cifras">
+        <div><dt><span data-contar="15">15</span>+</dt><dd>años en el taller</dd></div>
+        <div><dt><span data-contar="350">350</span>+</dt><dd>diseños de correas</dd></div>
+        <div><dt><span data-contar="10">10</span></dt><dd>unidades surtidas, pedido mínimo por mayor</dd></div>
+        <div><dt>XS–XL</dt><dd>y tallas a la medida</dd></div>
+      </dl>
+    </section>
+
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta__pista">
+        {[0, 1].map(() => <span class="cinta__grupo">{cinta.map((c) => <span>{c}<i>·</i></span>)}</span>)}
+      </div>
+    </div>
+
+    <!-- Tres caminos -->
+    <section class="caminos seccion" aria-labelledby="caminos-titulo">
+      <h2 id="caminos-titulo" class="oculto">Cómo comprar</h2>
+      {[
+        ['01', 'Por mayor', 'Surta su tienda desde 10 unidades surtidas, con precio de fábrica.', '#mayor', 'Ver condiciones'],
+        ['02', 'Con su marca', 'Fabricamos bolsos y correas con su logo, sus medidas y sus colores.', '#marca', 'Cómo funciona'],
+        ['03', 'Al detal', 'Su pieza en cuero, en su talla o a la medida, desde el taller.', '#catalogo', 'Elegir la mía'],
+      ].map(([n, t, d, href, cta]) => (
+        <a class="camino" href={href} data-revelar>
+          <span class="camino__n">{n}</span>
+          <span class="hilo"></span>
+          <h3>{t}</h3>
+          <p>{d}</p>
+          <span class="camino__ir">{cta} <span aria-hidden="true">→</span></span>
+        </a>
+      ))}
+    </section>
+
+    <Catalogo />
+
+    <!-- Pieza destacada -->
+    <section class="destacada seccion" aria-labelledby="destacada-titulo">
+      <figure class="destacada__foto" data-aro-foto>
+        <Image src={regSaiCebra} alt="Bolso Reg Sai en cebra y en café, sobre escalones de piedra" width={1017} format="webp" />
+      </figure>
+      <div class="destacada__texto" data-revelar>
+        <span class="rotulo">Pieza destacada · Bolso Reg Sai</span>
+        <h2 id="destacada-titulo">Un bolso, <em>dos estilos</em></h2>
+        <p>De pie es un tote de mano con aro rígido. Doblado con su broche magnético oculto, se vuelve una cartera cruzada con asa larga.</p>
+        <ul class="destacada__lista">
+          <li><span>Materiales</span>Cuero liso seleccionado y piel con pelo</li>
+          <li><span>Uso</span>Doble: tote de mano o cartera cruzada</li>
+          <li><span>Herrajes</span>Alta resistencia y cierre magnético</li>
+        </ul>
+        <a class="boton" href="#catalogo">Ver los cinco colores</a>
+      </div>
+    </section>
+
+    <!-- Por mayor -->
+    <section id="mayor" class="mayor seccion oscuro" aria-labelledby="mayor-titulo">
+      <div class="mayor__cabeza" data-revelar>
+        <span class="rotulo">Para tiendas y revendedores</span>
+        <h2 id="mayor-titulo">Por mayor, <em>sin vueltas</em></h2>
+        <p>Lo que más nos preguntan, respondido de una vez.</p>
+      </div>
+      <dl class="condiciones">
+        <div data-revelar><dt>Pedido mínimo</dt><dd>{negocio.minimoMayor} unidades surtidas: mezcle modelos, colores y tallas.</dd></div>
+        <div data-revelar><dt>Precio</dt><dd>Correas desde $23.000 por unidad. Pida la lista completa por WhatsApp.</dd></div>
+        <div data-revelar><dt>Envíos</dt><dd>A todo el país por transportadora. <span class="pendiente">[Por confirmar costo y tiempos]</span></dd></div>
+        <div data-revelar><dt>Pago</dt><dd><span class="pendiente">[Por confirmar medios de pago]</span></dd></div>
+      </dl>
+      <a class="boton" href={wa('Hola, quiero la lista de precios por mayor.')} target="_blank" rel="noopener">Pedir lista de precios</a>
+    </section>
+
+    <!-- Con su marca -->
+    <section id="marca" class="marca seccion" aria-labelledby="marca-titulo">
+      <div class="marca__cabeza" data-revelar>
+        <span class="rotulo">Fabricación para marcas</span>
+        <h2 id="marca-titulo">Su marca, <em>nuestro taller</em></h2>
+        <p>¿Tiene un emprendimiento o una tienda y quiere bolsos y correas con su nombre? Los hacemos de principio a fin.</p>
+      </div>
+      <ol class="proceso">
+        {[['Selección del cuero', 'Elegimos con usted el cuero, el color y el acabado.'], ['Corte', 'A sus medidas, con su diseño o con uno de los nuestros.'], ['Costura', 'Cada pieza se cose y se arma en el taller.'], ['Detalles', 'Herrajes, remates y su logo marcado en el cuero.']].map(([t, d]) => (
+          <li data-revelar><h3>{t}</h3><p>{d}</p></li>
+        ))}
+      </ol>
+      <aside class="caso" data-revelar>
+        <span class="rotulo">Ya lo hicimos</span>
+        <p>Colección <strong>ORIGEN</strong> para Sexto Sentido, en Puerto Rico: carteras de cuero con tejidos artesanales, en producción limitada.</p>
+      </aside>
+      <form class="formulario" data-form-marca data-revelar>
+        <label class="campo">Su nombre <input name="nombre" required autocomplete="name" /></label>
+        <label class="campo">Su marca o negocio <input name="marca" required /></label>
+        <label class="campo">Qué quiere fabricar <input name="producto" placeholder="Bolsos, correas…" required /></label>
+        <label class="campo">Cantidad aproximada <input name="cantidad" inputmode="numeric" placeholder="Ej. 100" /></label>
+        <label class="autoriza"><input type="checkbox" required /> Autorizo el tratamiento de mis datos para responder esta solicitud (Ley 1581 de 2012).</label>
+        <button class="boton" type="submit">Enviar por WhatsApp</button>
+      </form>
+    </section>
+
+    <!-- Historia -->
+    <section id="historia" class="historia seccion" aria-labelledby="historia-titulo">
+      <div class="historia__marca" data-revelar><Logo tamano="grande" animar /></div>
+      <div class="historia__texto">
+        <span class="rotulo">Nuestra historia</span>
+        <h2 id="historia-titulo" data-revelar>Empezó con <em>una sola</em> correa</h2>
+        <p data-revelar>Mario Varela es de Zarzal. Llegó a Cali hace 16 años y desde hace 15 fabrica bolsos y correas en el centro de la ciudad. No siempre fue fácil: empezó haciendo una unidad, y hoy surte negocios en todo el país.</p>
+        <blockquote data-revelar>«Seguimos con las mismas ganas del primer día.»</blockquote>
+      </div>
+    </section>
+
+    <section class="manos seccion oscuro" aria-labelledby="manos-titulo">
+      <span class="rotulo">Hecho por manos de aquí</span>
+      <h2 id="manos-titulo" data-revelar>Más de <span data-contar="12">12</span> madres cabeza de hogar fabrican con nosotros desde su casa.</h2>
+      <p data-revelar>Y comunidades indígenas del Pacífico colombiano nos enseñan técnicas para correas, bolsos y tejidos. <span class="pendiente">[Por confirmar cifras y autorización]</span></p>
+    </section>
+
+    <!-- Confianza -->
+    <section class="confianza seccion" aria-label="Lo que nos respalda">
+      {[
+        ['8.500', 'seguidores en Instagram'],
+        ['El País', 'nos destacó en la feria IFLS 2026'],
+        ['Puerto Rico', 'vende nuestra colección ORIGEN'],
+        ['15 años', 'en el barrio Sucre de Cali'],
+      ].map(([c, t]) => <div data-revelar><strong>{c}</strong><span>{t}</span></div>)}
+    </section>
+
+    <!-- Tallas -->
+    <section class="tallas seccion" aria-labelledby="tallas-titulo">
+      <div data-revelar>
+        <span class="rotulo">Correas</span>
+        <h2 id="tallas-titulo">¿Cuál es <em>su talla</em>?</h2>
+        <p>Mida una correa que le quede bien, desde donde empieza el cuero hasta el agujero que usa. <span class="pendiente">[Medidas de ejemplo]</span></p>
+      </div>
+      <table class="tabla" data-revelar>
+        <thead><tr><th scope="col">Talla</th><th scope="col">Cintura</th><th scope="col">Pantalón</th></tr></thead>
+        <tbody>
+          {[['XS', '70–80 cm', '28–30'], ['S', '80–90 cm', '30–32'], ['M', '90–100 cm', '32–34'], ['L', '100–110 cm', '34–36'], ['XL', '110–120 cm', '36–40']].map(([a, b, c]) => <tr><th scope="row">{a}</th><td>{b}</td><td>{c}</td></tr>)}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Visítenos -->
+    <section id="visitenos" class="visitenos seccion oscuro" aria-labelledby="visitenos-titulo">
+      <span class="rotulo">Visite el taller</span>
+      <h2 id="visitenos-titulo" data-revelar>{negocio.direccion}</h2>
+      <p class="visitenos__barrio">{negocio.barrio}</p>
+      <p class="pendiente">[Horario por confirmar]</p>
+      <div class="portada__acciones">
+        <a class="boton" href="https://www.google.com/maps/search/?api=1&query=Carrera+9A+%2318-33+Cali" target="_blank" rel="noopener">Cómo llegar</a>
+        <a class="boton boton--linea" href={negocio.instagram} target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie oscuro">
+    <Logo tamano="grande" />
+    <p>{negocio.razonSocial} · NIT {negocio.nit} · Cali, Colombia</p>
+  </footer>
+
+  <a class="wa-flotante" href={wa('Hola, quiero información sobre sus productos.')} target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+  </a>
+
+  <Pedido />
+
+  <script>
+    import '../scripts/catalogo.js';
+    import '../scripts/animaciones.js';
+  </script>
+</Base>
+
+<style>
+  /* Portada */
+  .portada { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: calc(var(--u) * 6) calc(var(--u) * 8); align-items: center; padding: calc(var(--u) * 10) var(--margen) calc(var(--u) * 6); overflow: hidden; }
+  .portada__titulo { font-size: var(--t-4); font-weight: 420; font-variation-settings: 'opsz' 40; letter-spacing: -0.02em; line-height: 0.98; margin-bottom: calc(var(--u) * 4); }
+  /* el padding superior deja ver la tilde de "Único" pese al overflow que oculta la palabra antes de entrar */
+  .portada__linea { display: block; overflow: hidden; padding: 0.16em 0 0.06em; margin-top: -0.16em; }
+  .portada__linea span { display: inline-block; }
+  .portada__acento { font-style: italic; color: var(--rojo); }
+  .portada__bajada { font-size: var(--t-1); max-width: 36ch; color: var(--texto-2); }
+  .portada__acciones { display: flex; flex-wrap: wrap; gap: calc(var(--u) * 1.5); margin-top: calc(var(--u) * 4); }
+  .portada__figura { position: relative; margin: 0; justify-self: center; width: min(100%, 440px); }
+  /* arco: la foto vive dentro de una ventana con tope redondo, como el aro del Reg Sai */
+  .portada__foto { aspect-ratio: 3 / 4.3; border-radius: 999px 999px 0 0; overflow: hidden; clip-path: circle(75% at 50% 50%); background: var(--piedra); }
+  .portada__foto img { width: 100%; height: 110%; object-fit: cover; object-position: 40% 20%; }
+  .portada__aro { position: absolute; width: 46%; aspect-ratio: 1; right: -12%; bottom: 10%; border: 10px solid var(--negro); border-radius: 50%; }
+  .portada figcaption { margin-top: calc(var(--u) * 1.5); font: 600 0.74rem/1 var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: var(--texto-2); }
+  .cifras { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); margin: calc(var(--u) * 4) 0 0; border-top: 1px solid var(--negro); }
+  .cifras div { padding: calc(var(--u) * 3) calc(var(--u) * 2) 0; border-left: 1px solid color-mix(in oklch, var(--negro) 18%, transparent); }
+  .cifras div:first-child { border-left: 0; padding-left: 0; }
+  .cifras dt { font: 400 var(--t-3)/1 var(--serif); }
+  .cifras dd { margin: 6px 0 0; font-size: 0.88rem; color: var(--texto-2); }
+
+  /* Cinta */
+  .cinta { overflow: hidden; background: var(--negro); color: var(--travertino); padding-block: calc(var(--u) * 2.5); }
+  .cinta__pista { display: flex; width: max-content; animation: cinta 38s linear infinite; }
+  .cinta__grupo { display: flex; }
+  .cinta span span { font: italic 400 var(--t-2)/1 var(--serif); white-space: nowrap; }
+  .cinta i { font-style: normal; color: var(--oro); margin-inline: calc(var(--u) * 3); }
+  @keyframes cinta { to { transform: translateX(-50%); } }
+
+  /* Caminos */
+  .caminos { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--u) * 6); }
+  .camino { display: flex; flex-direction: column; text-decoration: none; }
+  .camino:nth-child(3) { margin-top: calc(var(--u) * 5); }
+  .camino:nth-child(4) { margin-top: calc(var(--u) * 10); }
+  .camino__n { font: italic 400 var(--t-3)/1 var(--serif); color: var(--rojo); margin-bottom: calc(var(--u) * 2); }
+  .camino .hilo { margin-bottom: calc(var(--u) * 3); }
+  .camino h3 { font-size: var(--t-2); }
+  .camino p { color: var(--texto-2); }
+  .camino__ir { margin-top: auto; font: 600 0.78rem/1 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; padding-top: calc(var(--u) * 2); }
+  .camino:hover h3 { font-style: italic; }
+
+  /* Destacada */
+  .destacada { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: calc(var(--u) * 8); align-items: center; background: var(--piedra); }
+  .destacada__foto { margin: 0; }
+  .destacada__foto img { width: 100%; }
+  .destacada__lista { list-style: none; padding: 0; margin: calc(var(--u) * 3) 0 calc(var(--u) * 4); }
+  .destacada__lista li { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--u); padding-block: calc(var(--u) * 1.5); border-top: 1px solid color-mix(in oklch, var(--negro) 20%, transparent); }
+  .destacada__lista span { font: 600 0.74rem/1.8 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--conac); }
+
+  /* Por mayor */
+  .mayor__cabeza { max-width: 52ch; margin-bottom: calc(var(--u) * 6); }
+  .mayor__cabeza p { color: var(--piedra); font-size: var(--t-1); }
+  .condiciones { display: grid; grid-template-columns: repeat(4, 1fr); gap: calc(var(--u) * 3); margin: 0 0 calc(var(--u) * 6); }
+  .condiciones div { padding-top: calc(var(--u) * 2.5); border-top: 1px solid var(--oro); }
+  .condiciones dt { font: italic 400 var(--t-2)/1.1 var(--serif); color: var(--oro); margin-bottom: var(--u); }
+  .condiciones dd { margin: 0; color: var(--piedra); }
+
+  /* Marca */
+  .marca { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 6) calc(var(--u) * 8); }
+  .marca__cabeza { grid-column: 1 / -1; max-width: 56ch; }
+  .marca__cabeza p { color: var(--texto-2); font-size: var(--t-1); }
+  .proceso { list-style: none; margin: 0; padding: 0; counter-reset: paso; display: grid; gap: calc(var(--u) * 3); align-content: start; }
+  .proceso li { counter-increment: paso; display: grid; grid-template-columns: 3.5rem 1fr; column-gap: calc(var(--u) * 2.5); }
+  .proceso li::before { content: counter(paso); grid-row: span 2; display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 1px solid var(--negro); border-radius: 50%; font: italic 400 1.4rem/1 var(--serif); }
+  .proceso h3 { margin: 6px 0 2px; }
+  .proceso p { margin: 0; color: var(--texto-2); }
+  .caso { grid-column: 1; padding: calc(var(--u) * 4); background: var(--negro); color: var(--travertino); }
+  .caso .rotulo { color: var(--oro); }
+  .caso p { margin: 0; font: 400 var(--t-1)/1.4 var(--serif); }
+  .formulario { grid-column: 2; grid-row: 2 / span 2; display: grid; gap: calc(var(--u) * 2); align-content: start; padding: calc(var(--u) * 5); background: var(--arena); border: 1px solid color-mix(in oklch, var(--negro) 15%, transparent); }
+  .autoriza { display: flex; gap: var(--u); align-items: flex-start; font-size: 0.85rem; color: var(--texto-2); }
+  .autoriza input { width: 1.2rem; height: 1.2rem; margin-top: 3px; accent-color: var(--rojo); }
+
+  /* Historia */
+  .historia { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: calc(var(--u) * 8); align-items: center; background: var(--piedra); }
+  .historia__marca { display: grid; place-items: center; aspect-ratio: 1; border-radius: 50%; background: var(--travertino); padding: 12%; }
+  .historia h2 { font-size: var(--t-4); font-weight: 400; }
+  .historia p { font-size: var(--t-1); max-width: 46ch; }
+  .historia blockquote { margin: calc(var(--u) * 4) 0 0; padding-left: calc(var(--u) * 3); border-left: 2px solid var(--rojo); font: italic 400 var(--t-2)/1.25 var(--serif); }
+
+  .manos h2 { font-size: var(--t-3); max-width: 24ch; font-weight: 400; }
+  .manos h2 span { font-style: italic; color: var(--oro); }
+  .manos p { font-size: var(--t-1); max-width: 50ch; color: var(--piedra); }
+
+  /* Confianza */
+  .confianza { display: grid; grid-template-columns: repeat(4, 1fr); gap: calc(var(--u) * 3); padding-block: calc(var(--u) * 10); }
+  .confianza div { display: grid; gap: var(--u); padding-top: calc(var(--u) * 2); border-top: 1px solid var(--negro); }
+  .confianza strong { font: 400 var(--t-2)/1 var(--serif); }
+  .confianza span { color: var(--texto-2); font-size: 0.92rem; }
+
+  /* Tallas */
+  .tallas { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 8); align-items: start; padding-top: 0; }
+  .tallas p { color: var(--texto-2); }
+  .tabla { width: 100%; border-collapse: collapse; }
+  .tabla th, .tabla td { padding: calc(var(--u) * 1.5) var(--u); text-align: left; border-bottom: 1px solid color-mix(in oklch, var(--negro) 18%, transparent); }
+  .tabla thead th { font: 600 0.74rem/1 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--conac); }
+  .tabla tbody th { font: 400 1.25rem/1 var(--serif); }
+
+  /* Visítenos y pie */
+  .visitenos { text-align: center; display: grid; justify-items: center; }
+  .visitenos h2 { font-size: var(--t-4); font-weight: 400; }
+  .visitenos__barrio { font: italic 400 var(--t-2)/1.2 var(--serif); color: var(--oro); }
+  .pie { display: grid; justify-items: center; gap: calc(var(--u) * 4); padding: calc(var(--u) * 10) var(--margen) calc(var(--u) * 5); border-top: 1px solid color-mix(in oklch, var(--travertino) 15%, transparent); text-align: center; }
+  .pie p { margin: 0; font-size: 0.82rem; color: var(--piedra); }
+
+  .wa-flotante { position: fixed; right: 18px; bottom: 18px; z-index: 35; display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: var(--negro); color: var(--travertino); box-shadow: 0 0 0 4px var(--travertino); transition: background 0.3s var(--curva); }
+  .wa-flotante:hover { background: var(--rojo); }
+
+  @media (max-width: 900px) {
+    .portada { grid-template-columns: 1fr; padding-top: calc(var(--u) * 5); }
+    .portada__figura { order: -1; width: min(78%, 340px); }
+    .cifras { grid-template-columns: repeat(2, 1fr); row-gap: calc(var(--u) * 3); }
+    .cifras div:nth-child(3) { border-left: 0; padding-left: 0; }
+    .caminos, .condiciones, .confianza { grid-template-columns: 1fr; }
+    .camino:nth-child(n) { margin-top: 0; }
+    .destacada, .marca, .historia, .tallas { grid-template-columns: 1fr; }
+    .formulario, .caso { grid-column: auto; grid-row: auto; }
+    .historia__marca { width: min(80%, 320px); justify-self: center; }
+    .confianza { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
