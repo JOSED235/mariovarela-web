@@ -2,7 +2,19 @@
 
 Página web de **Mario Varela** (Disacol Mario Varela S.A.S., NIT 902.012.563-9), fábrica de correas, bolsos y accesorios de cuero en Cali (Carrera 9A # 18-33, barrio Sucre). Vende por mayor y al detal y fabrica para otras marcas.
 
-**Estado (7-nov-2026):** investigación hecha; todavía no hay código. Falta la reunión con el cliente.
+**Estado (7-nov-2026):** el cliente dijo que sí. Hay un **borrador** estático (`index.html`) para enviarle el martes 10-nov con la cotización. Fotos, precios y referencias son de ejemplo, y los pedidos de prueba llegan al WhatsApp de José David (`js/datos.js`).
+
+## Ver el borrador
+
+```bash
+npx http-server -s .   # los módulos de JS no cargan con file://
+node --test js/        # pruebas del pedido (agregar, total, mínimo por mayor, mensaje)
+```
+
+- `js/datos.js`: referencias de ejemplo, colores, mínimo por mayor y número de WhatsApp.
+- `js/pedido.js`: lógica pura del pedido (con pruebas en `pedido.test.js`).
+- `js/main.js`: filtros, tarjetas, panel del pedido y formulario de marca propia.
+- Sistema visual en [DESIGN.md](DESIGN.md).
 
 ## Documentación
 

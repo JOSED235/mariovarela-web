@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mario Varela · Fábrica de correas y bolsos de cuero en Cali</title>
+  <meta name="description" content="Fábrica de correas, bolsos y accesorios de cuero en el centro de Cali. Por mayor desde 10 unidades surtidas, al detal y fabricación para su marca.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- shortcut: fuentes desde Google en el borrador; en producción se autoalojan con subset -->
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,500..900&family=Hanken+Grotesk:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <p class="aviso-borrador">Borrador para revisión · Fotos, precios y referencias son de ejemplo · Los pedidos de prueba llegan a José David</p>
+
+  <header class="barra">
+    <a class="marca" href="#inicio" aria-label="Mario Varela, inicio">
+      <span class="marca__sello">MV</span>
+      <span class="marca__nombre">Mario Varela</span>
+    </a>
+    <nav aria-label="Principal">
+      <ul class="menu">
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#mayor">Por mayor</a></li>
+        <li><a href="#marca">Su marca</a></li>
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#visitenos">Visítenos</a></li>
+      </ul>
+    </nav>
+    <button class="boton-pedido" type="button" data-abrir-pedido aria-controls="pedido">
+      Mi pedido <span class="contador" data-contador>0</span>
+    </button>
+  </header>
+
+  <main id="inicio">
+    <section class="portada">
+      <div class="portada__texto">
+        <p class="portada__lugar">Barrio Sucre · Centro de Cali</p>
+        <h1>Correas y bolsos de cuero, <em>de la fábrica a su negocio</em>.</h1>
+        <p class="portada__bajada">Más de 15 años cortando, cosiendo y rematando a mano. Más de 350 diseños para tiendas de todo el país, para su propia marca o para usted.</p>
+        <div class="portada__acciones">
+          <a class="boton boton--fuerte" href="#catalogo">Ver catálogo</a>
+          <a class="boton boton--linea" href="#marca">Fabricar para mi marca</a>
+        </div>
+      </div>
+      <figure class="portada__video">
+        <div class="video-falso" role="img" aria-label="Espacio para el video del taller">
+          <span>Video del taller</span>
+          <small>Aquí va un reel suyo: corte, costura y remate</small>
+        </div>
+      </figure>
+      <ol class="regla" aria-label="Datos de la fábrica">
+        <li><strong>15+</strong> años fabricando</li>
+        <li><strong>350+</strong> diseños</li>
+        <li><strong>10</strong> unidades surtidas, pedido mínimo por mayor</li>
+        <li><strong>XS–XL</strong> y tallas a medida</li>
+      </ol>
+    </section>
+
+    <section class="caminos" aria-labelledby="caminos-titulo">
+      <h2 id="caminos-titulo" class="oculto">¿Qué necesita?</h2>
+      <a class="camino" href="#mayor">
+        <span class="camino__num">01</span>
+        <h3>Por mayor</h3>
+        <p>Surta su tienda desde 10 unidades surtidas. Precio de fábrica desde $23.000.</p>
+        <span class="camino__ir">Ver condiciones</span>
+      </a>
+      <a class="camino camino--acento" href="#marca">
+        <span class="camino__num">02</span>
+        <h3>Con su marca</h3>
+        <p>Le fabricamos correas y bolsos con su logo, sus medidas y sus colores.</p>
+        <span class="camino__ir">Cómo funciona</span>
+      </a>
+      <a class="camino" href="#catalogo">
+        <span class="camino__num">03</span>
+        <h3>Al detal</h3>
+        <p>Su correa desde $50.000, en su talla o a la medida.</p>
+        <span class="camino__ir">Elegir la mía</span>
+      </a>
+    </section>
+
+    <section id="catalogo" class="catalogo" aria-labelledby="catalogo-titulo">
+      <div class="seccion-cabeza">
+        <h2 id="catalogo-titulo">Catálogo</h2>
+        <p>Elija referencias, colores y cantidades. Al final le llega todo armado a nuestro WhatsApp.</p>
+      </div>
+
+      <div class="filtros" role="search">
+        <label class="buscar">
+          <span class="oculto">Buscar por código o nombre</span>
+          <input type="search" placeholder="Buscar: MV-C03, trenzada, café…" data-buscar>
+        </label>
+        <div class="chips" role="group" aria-label="Tipo de producto" data-filtro="tipo"></div>
+        <div class="chips" role="group" aria-label="Color" data-filtro="color"></div>
+        <div class="modo" role="group" aria-label="Tipo de compra">
+          <button type="button" class="modo__op" aria-pressed="true" data-modo="detal">Al detal</button>
+          <button type="button" class="modo__op" aria-pressed="false" data-modo="mayor">Por mayor</button>
+        </div>
+      </div>
+
+      <p class="resultado" data-resultado aria-live="polite"></p>
+      <ul class="rejilla" data-rejilla></ul>
+    </section>
+
+    <section id="mayor" class="mayor" aria-labelledby="mayor-titulo">
+      <div class="seccion-cabeza seccion-cabeza--clara">
+        <h2 id="mayor-titulo">Por mayor, sin vueltas</h2>
+        <p>Lo que preguntan todos los que nos escriben, respondido de una vez.</p>
+      </div>
+      <dl class="condiciones">
+        <div><dt>Pedido mínimo</dt><dd>10 unidades surtidas: mezcle referencias, colores y tallas.</dd></div>
+        <div><dt>Precio</dt><dd>Desde $23.000 por unidad según la referencia. Pida la lista completa por WhatsApp.</dd></div>
+        <div><dt>Envíos</dt><dd>A todo el país por transportadora. <span class="pendiente">[Por confirmar: costo y tiempos]</span></dd></div>
+        <div><dt>Pago</dt><dd><span class="pendiente">[Por confirmar: transferencia, Nequi, contraentrega…]</span></dd></div>
+      </dl>
+      <details class="pregunta">
+        <summary>¿Puedo ver las correas antes de comprar?</summary>
+        <p>Sí. Venga a la fábrica en la Carrera 9A # 18-33 o pídanos fotos y video por WhatsApp.</p>
+      </details>
+      <details class="pregunta">
+        <summary>¿Hacen tallas grandes?</summary>
+        <p>Todas las referencias van de XS a XL y hacemos tallas a medida.</p>
+      </details>
+    </section>
+
+    <section id="marca" class="marca-propia" aria-labelledby="marca-titulo">
+      <div class="seccion-cabeza">
+        <h2 id="marca-titulo">Fabricamos para su marca</h2>
+        <p>¿Tiene un emprendimiento o una tienda y quiere correas y bolsos con su nombre? Nosotros los hacemos.</p>
+      </div>
+      <ol class="proceso">
+        <li><h3>Selección del cuero</h3><p>Elegimos con usted el cuero, el color y el acabado.</p></li>
+        <li><h3>Corte</h3><p>Cortamos a sus medidas, con su diseño o uno de los nuestros.</p></li>
+        <li><h3>Costura</h3><p>Cosemos y armamos cada pieza en el taller.</p></li>
+        <li><h3>Detalles</h3><p>Hebillas, remates y su logo marcado en el cuero.</p></li>
+      </ol>
+      <aside class="caso">
+        <p class="caso__etiqueta">Ya lo hicimos</p>
+        <p class="caso__texto">Colección <strong>ORIGEN</strong> para Sexto Sentido, en Puerto Rico: carteras de cuero con tejidos artesanales, en producción limitada.</p>
+      </aside>
+      <form class="formulario" data-form-marca>
+        <label>Su nombre <input name="nombre" required autocomplete="name"></label>
+        <label>Su marca o negocio <input name="marca" required></label>
+        <label>Qué quiere fabricar <input name="producto" placeholder="Correas, bolsos…" required></label>
+        <label>Cantidad aproximada <input name="cantidad" inputmode="numeric" placeholder="Ej. 100"></label>
+        <label class="autoriza"><input type="checkbox" required> Autorizo el tratamiento de mis datos para responder esta solicitud (Ley 1581 de 2012).</label>
+        <button class="boton boton--fuerte" type="submit">Enviar por WhatsApp</button>
+      </form>
+    </section>
+
+    <section id="historia" class="historia" aria-labelledby="historia-titulo">
+      <figure class="historia__foto">
+        <div class="foto-falsa" role="img" aria-label="Espacio para la foto de Mario Varela en el taller">Foto de Mario en el taller</div>
+      </figure>
+      <div class="historia__texto">
+        <h2 id="historia-titulo">Empezó con una sola correa</h2>
+        <p>Mario Varela es de Zarzal. Llegó a Cali hace 16 años y desde hace 15 fabrica correas y bolsos en el centro de la ciudad. No siempre fue fácil: empezó haciendo una unidad, y hoy surte negocios en todo el país.</p>
+        <p class="firma">«Seguimos con las mismas ganas del primer día.»</p>
+      </div>
+    </section>
+
+    <section class="manos" aria-labelledby="manos-titulo">
+      <h2 id="manos-titulo">Hecho por manos de aquí</h2>
+      <p>Más de 12 madres cabeza de hogar fabrican desde su casa con nosotros, y comunidades indígenas del Pacífico colombiano nos enseñan técnicas para correas, bolsos y tejidos. <span class="pendiente">[Por confirmar cifras y autorización]</span></p>
+    </section>
+
+    <section class="tallas" aria-labelledby="tallas-titulo">
+      <div class="seccion-cabeza">
+        <h2 id="tallas-titulo">¿Cuál es su talla?</h2>
+        <p>Mida una correa que le quede bien, desde donde empieza el cuero hasta el agujero que usa. <span class="pendiente">[Medidas de ejemplo]</span></p>
+      </div>
+      <div class="tabla-tallas" role="table" aria-label="Tabla de tallas">
+        <div role="row"><span role="columnheader">Talla</span><span role="columnheader">Cintura (cm)</span><span role="columnheader">Pantalón</span></div>
+        <div role="row"><span role="cell">XS</span><span role="cell">70–80</span><span role="cell">28–30</span></div>
+        <div role="row"><span role="cell">S</span><span role="cell">80–90</span><span role="cell">30–32</span></div>
+        <div role="row"><span role="cell">M</span><span role="cell">90–100</span><span role="cell">32–34</span></div>
+        <div role="row"><span role="cell">L</span><span role="cell">100–110</span><span role="cell">34–36</span></div>
+        <div role="row"><span role="cell">XL</span><span role="cell">110–120</span><span role="cell">36–40</span></div>
+      </div>
+    </section>
+
+    <section id="visitenos" class="visitenos" aria-labelledby="visitenos-titulo">
+      <h2 id="visitenos-titulo">Visite la fábrica</h2>
+      <address>
+        Carrera 9A # 18-33<br>Barrio Sucre, centro de Cali
+      </address>
+      <p class="pendiente">[Horario por confirmar]</p>
+      <div class="portada__acciones">
+        <a class="boton boton--fuerte" href="https://www.google.com/maps/search/?api=1&query=Carrera+9A+%2318-33+Cali" target="_blank" rel="noopener">Cómo llegar</a>
+        <a class="boton boton--linea" href="https://www.instagram.com/mariovareladisacol/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Disacol Mario Varela S.A.S. · NIT 902.012.563-9 · Cali, Colombia</p>
+  </footer>
+
+  <aside id="pedido" class="pedido" aria-label="Mi pedido" hidden>
+    <div class="pedido__cabeza">
+      <h2>Mi pedido</h2>
+      <button type="button" class="cerrar" data-cerrar-pedido aria-label="Cerrar pedido">×</button>
+    </div>
+    <p class="pedido__minimo" data-minimo></p>
+    <ul class="pedido__lista" data-lista></ul>
+    <label class="pedido__dato">Su nombre <input data-nombre autocomplete="name"></label>
+    <label class="pedido__dato">Ciudad <input data-ciudad autocomplete="address-level2"></label>
+    <button class="boton boton--fuerte boton--ancho" type="button" data-enviar>Enviar pedido por WhatsApp</button>
+  </aside>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
